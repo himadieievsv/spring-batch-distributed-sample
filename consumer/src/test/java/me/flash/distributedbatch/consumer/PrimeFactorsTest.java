@@ -16,6 +16,9 @@ class PrimeFactorsTest {
 
     static Stream<Arguments> divisorCounts() {
         return Stream.of(
+                arguments(-1L, -1),
+                arguments(0L, -1),
+                arguments(1L, -1),
                 arguments(2L, 1),
                 arguments(3L, 1),
                 arguments(4L, 2),
@@ -31,7 +34,7 @@ class PrimeFactorsTest {
     @DisplayName("Calculation of prime factors count")
     @ParameterizedTest(name = "There should be {1} prime factors for number {0}.")
     @MethodSource("divisorCounts")
-    void countOfFactors(long number, int expectedCount) {
+    void testCountOfFactors(long number, int expectedCount) {
         assertThat(primeFactors.countOfFactors(number)).isEqualTo(expectedCount);
     }
 }
