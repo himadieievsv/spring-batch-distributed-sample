@@ -23,7 +23,8 @@ class PrimeFactorsTest {
                 arguments(511L, 2),
                 arguments(6701L, 1),
                 arguments(3628800L, 15),
-                arguments(770527199232000L, 39)
+                arguments(770527199232000L, 39),
+                arguments(1235131L, 1)
         );
     }
 
