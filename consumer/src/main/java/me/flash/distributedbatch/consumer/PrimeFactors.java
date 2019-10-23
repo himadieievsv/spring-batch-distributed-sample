@@ -11,8 +11,8 @@ public class PrimeFactors {
      * @return Count of prime factors
      */
     public int countOfFactors(final long number) {
-        long reminder = number;
-        int divisor = 2, count = 0;
+        long reminder = number, divisor = 2L;
+        int count = 0;
         while (reminder > 1) {
             while (reminder % divisor == 0) {
                 count++;
