@@ -31,9 +31,9 @@ class PrimeFactorsTest {
         );
     }
 
-    @DisplayName("Calculation of prime factors count")
     @ParameterizedTest(name = "There should be {1} prime factors for number {0}.")
     @MethodSource("divisorCounts")
+    @DisplayName("Calculation of prime factors count")
     void testCountOfFactors(long number, int expectedCount) {
         assertThat(primeFactors.countOfFactors(number)).isEqualTo(expectedCount);
     }
