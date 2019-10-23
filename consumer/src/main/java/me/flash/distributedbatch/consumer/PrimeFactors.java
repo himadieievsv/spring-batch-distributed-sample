@@ -13,6 +13,9 @@ public class PrimeFactors {
     public int countOfFactors(final long number) {
         long reminder = number, divisor = 2L;
         int count = 0;
+        if (number < 2) {
+            return -1;
+        }
         while (reminder > 1) {
             while (reminder % divisor == 0) {
                 count++;
