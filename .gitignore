@@ -13,4 +13,4 @@ build/
 out/
 
 ### Docker volumes
-.docker/volumes/mysql/lib
+docker/volumes/mysql/lib
