@@ -5,13 +5,14 @@ package me.flash.distributedbatch.consumer;
  */
 public class PrimeFactors {
     /**
-     * Retrieve count of prime factors
+     * Retrieve count of prime factors.
      *
      * @param number Number to count prime factors
      * @return Count of prime factors
      */
     public int countOfFactors(final long number) {
-        long reminder = number, divisor = 2L;
+        long reminder = number;
+        long divisor = 2L;
         int count = 0;
         if (number < 2) {
             return -1;
