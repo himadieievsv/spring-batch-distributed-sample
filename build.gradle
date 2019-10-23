@@ -42,4 +42,8 @@ subprojects {
             exclude group: 'junit', module: 'junit'
         }
     }
+
+    test {
+        useJUnitPlatform()
+    }
 }
