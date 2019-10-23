@@ -1,9 +1,9 @@
 plugins {
-	id 'org.springframework.boot' version '2.2.0.RELEASE' apply false
-	id 'io.spring.dependency-management' version '1.0.8.RELEASE' apply false
-	id 'application'
-	id "com.github.spotbugs" version "2.0.0" apply false
-	id 'checkstyle'
+    id 'org.springframework.boot' version '2.2.0.RELEASE' apply false
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE' apply false
+    id 'application'
+    id "com.github.spotbugs" version "2.0.0" apply false
+    id 'checkstyle'
 }
 
 group = 'me.flash'
@@ -12,35 +12,34 @@ sourceCompatibility = 11
 
 subprojects {
 
-	apply plugin: 'org.springframework.boot'
-	apply plugin: 'io.spring.dependency-management'
-	apply plugin: 'java'
-	apply plugin: "com.github.spotbugs"
-	apply plugin: 'checkstyle'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+    apply plugin: 'java'
+    apply plugin: "com.github.spotbugs"
+    apply plugin: 'checkstyle'
 
+    configurations {
+        compileOnly {
+            extendsFrom annotationProcessor
+        }
+    }
 
-	configurations {
-		compileOnly {
-			extendsFrom annotationProcessor
-		}
-	}
+    repositories {
+        mavenCentral()
+        maven { url 'https://repo.spring.io/milestone' }
+    }
 
-	repositories {
-		mavenCentral()
-		maven { url 'https://repo.spring.io/milestone' }
-	}
-
-	dependencies {
-		implementation 'org.springframework.boot:spring-boot-starter-amqp'
-		implementation 'org.springframework.boot:spring-boot-starter-batch'
-		compileOnly 'org.projectlombok:lombok'
-		annotationProcessor 'org.projectlombok:lombok'
-		testImplementation('org.springframework.boot:spring-boot-starter-test') {
-			exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-		}
-		testImplementation ('org.springframework.amqp:spring-rabbit-test')
-		testImplementation ('org.springframework.batch:spring-batch-test') {
-			exclude group: 'junit', module: 'junit'
-		}
-	}
+    dependencies {
+        implementation 'org.springframework.boot:spring-boot-starter-amqp'
+        implementation 'org.springframework.boot:spring-boot-starter-batch'
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+        testImplementation('org.springframework.boot:spring-boot-starter-test') {
+            exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+        }
+        testImplementation('org.springframework.amqp:spring-rabbit-test')
+        testImplementation('org.springframework.batch:spring-batch-test') {
+            exclude group: 'junit', module: 'junit'
+        }
+    }
 }
