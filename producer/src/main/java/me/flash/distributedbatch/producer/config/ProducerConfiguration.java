@@ -39,12 +39,14 @@ public class ProducerConfiguration {
     /**
      * Define a producer job.
      *
+     * @param listener listener that will shutdown the app.
      * @return instance of {@link Job}.
      */
     @Bean
-    public Job producerJob() {
+    public Job producerJob(ShutdownListener listener) {
         return this.jobBuilderFactory.get("producerJob")
                 .start(readPrimesStep())
+                .listener(listener)
                 .build();
     }
 
