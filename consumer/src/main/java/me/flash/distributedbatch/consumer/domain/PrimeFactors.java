@@ -1,4 +1,4 @@
-package me.flash.distributedbatch.consumer;
+package me.flash.distributedbatch.consumer.domain;
 
 /**
  * Prime factors processing. Emulates workload.
