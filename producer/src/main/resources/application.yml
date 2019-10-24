@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    url: ${PRODUCER_MYSQL_URL}
+  rabbitmq:
+    addresses: ${RABBITMQ_ADDRESS}
+
+path-to-file: ${PRIMES_FILE_PATH}
