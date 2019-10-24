@@ -1,4 +1,4 @@
-package me.flash.distributedbatch.consumer;
+package me.flash.distributedbatch.consumer.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
