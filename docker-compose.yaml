@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+
+  rabbitmq:
+    image: "rabbitmq:3-management"
+    hostname: "rabbit"
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    labels:
+      NAME: "rabbitmq"
+    volumes:
+      - ./docker/volumes/rabbitmq/rabbitmq-isolated.conf:/etc/rabbitmq/rabbitmq.config
+
+  mysql:
+    image: mysql:8.0.17
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      TZ: Asia/Tokyo
+    volumes:
+      - ./docker/volumes/mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+      - ./docker/volumes/mysql/lib:/var/lib/mysql
+      - ./docker/volumes/mysql/conf.d:/etc/mysql/conf.d
