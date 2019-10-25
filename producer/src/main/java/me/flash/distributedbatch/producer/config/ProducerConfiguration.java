@@ -2,7 +2,6 @@ package me.flash.distributedbatch.producer.config;
 
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
-import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
@@ -18,15 +17,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
 import org.springframework.integration.amqp.dsl.Amqp;
-import org.springframework.integration.amqp.dsl.AmqpInboundChannelAdapterSMLCSpec;
 import org.springframework.integration.channel.DirectChannel;
 import org.springframework.integration.channel.QueueChannel;
 import org.springframework.integration.core.MessagingTemplate;
 import org.springframework.integration.dsl.IntegrationFlow;
 import org.springframework.integration.dsl.IntegrationFlows;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
-import org.springframework.util.Assert;
 
 import java.util.Objects;
 
@@ -154,41 +149,14 @@ public class ProducerConfiguration {
     /**
      * Creates inbound flow from EIP.
      *
+     * @param connectionFactory connection factory to AMQP broker.
      * @return Instance of {@link IntegrationFlow}  for inbound adapter.
      */
     @Bean
-    public IntegrationFlow inboundFlow() {
+    public IntegrationFlow inboundFlow(ConnectionFactory connectionFactory) {
         return IntegrationFlows
-                .from(channelAdapterSpec(null))
+                .from(Amqp.inboundAdapter(connectionFactory, "replies"))
                 .channel(replies())
                 .get();
-    }
-
-    /**
-     * Build dedicated bean in order to have a way to call stop on it before destroying context.
-     *
-     * @param connectionFactory connection factory to AMQP broker.
-     * @return Amqp inbound channel adapter
-     */
-    @Bean
-    public AmqpInboundChannelAdapterSMLCSpec channelAdapterSpec(ConnectionFactory connectionFactory) {
-        Assert.notNull(connectionFactory, "connectionFactory can't be null!");
-
-        SimpleMessageListenerContainer listenerContainer = new SimpleMessageListenerContainer(connectionFactory);
-        listenerContainer.setQueueNames("replies");
-        listenerContainer.setTaskExecutor(myTaskExecutor());
-        AmqpInboundChannelAdapterSMLCSpec inboundAdapter = Amqp.inboundAdapter(listenerContainer);
-        inboundAdapter.get().setTaskScheduler(myTaskScheduler());
-        return inboundAdapter;
-    }
-
-    @Bean
-    public ThreadPoolTaskExecutor myTaskExecutor() {
-        return new ThreadPoolTaskExecutor();
-    }
-
-    @Bean
-    public ThreadPoolTaskScheduler myTaskScheduler() {
-        return new ThreadPoolTaskScheduler();
     }
 }
