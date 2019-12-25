@@ -1,0 +1,5 @@
+spring:
+  datasource:
+    url: ${CONSUMER_MYSQL_URL}
+  rabbitmq:
+    addresses: ${RABBITMQ_ADDRESS}

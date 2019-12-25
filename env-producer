@@ -1,0 +1,2 @@
+export PRODUCER_MYSQL_URL="jdbc:mysql://address=(protocol=tcp)(type=master)(host=127.0.0.1)(port=3306)(user=producer)(password=producer)/producer_db?useSSL=false&allowPublicKeyRetrieval=true"
+export RABBITMQ_ADDRESS="amqp://guest:guest@127.0.0.1:5672/"

@@ -11,3 +11,6 @@ build/
 *.iml
 *.ipr
 out/
+
+### Docker volumes
+docker/volumes/mysql/lib

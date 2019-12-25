@@ -1,1 +1,4 @@
 rootProject.name = 'distributed-batch'
+
+include 'producer'
+include 'consumer'
