@@ -1,6 +1,6 @@
 # Spring Batch Remote Chunking Example
 
-## Example of spring batch distribution via Message oriented Middleware (MOM)
+## Example of spring batch distribution using RebbitMQ
 
 Implementation of Remote Chunking in order to scale processing. 
 
