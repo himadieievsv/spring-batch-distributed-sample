@@ -18,6 +18,7 @@ public class PrimeFactors {
             return -1;
         }
         while (reminder > 1) {
+            // Use cycle for additional CPU load
             while (reminder % divisor == 0) {
                 count++;
                 reminder /= divisor;
