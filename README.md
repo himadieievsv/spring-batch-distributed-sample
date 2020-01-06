@@ -1,6 +1,6 @@
 # Spring Batch Remote Chunking Example
 
-## Example of spring batch distribution using RebbitMQ
+## Example of spring batch distribution using RabbitMQ
 
 Implementation of Remote Chunking in order to scale processing. 
 
