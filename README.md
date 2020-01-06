@@ -1,4 +1,4 @@
-# Spring Batch - Remote Chunking
+# Spring Batch Remote Chunking Example
 
 ## Example of spring batch distribution via Message oriented Middleware (MOM)
 
